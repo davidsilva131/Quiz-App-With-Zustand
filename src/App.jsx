@@ -1,19 +1,18 @@
 import './App.css'
-import { Container, Text, Button } from '@nextui-org/react'
+import { Container, Text } from '@nextui-org/react'
+import PlayButton from './components/PlayButton'
 
 function App () {
   return (
     <main className='main'>
       <Container className='container'>
         <section className='app'>
-          <section className='tittle'>
+          <div className='tittle'>
             <Text h1>App</Text>
-          </section>
-          <section className='content'>
-            <Button shadow color='gradient'>
-              Play
-            </Button>
-          </section>
+          </div>
+          <div className='content'>
+            <PlayButton />
+          </div>
         </section>
       </Container>
     </main>
