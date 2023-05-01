@@ -4,5 +4,5 @@ export const getQuiz = async () => {
   const url = `${URL_API}?amount=${QUIZ_QUANTITY}`
   const response = await fetch(url)
   const { results } = await response.json()
-  console.log(results)
+  return results
 }

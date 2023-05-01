@@ -1,12 +1,13 @@
 import { Button } from '@nextui-org/react'
-import { getQuiz } from '../services/QuizServices'
+import { useQuestionsStore } from '../store/QuizStore'
 
 const PlayButton = () => {
-  const handlePlay = () => {
-    getQuiz()
+  const { fetchQuestions } = useQuestionsStore((state) => state)
+  const handlePlay = async () => {
+    await fetchQuestions()
   }
   return (
-    <Button onClick={handlePlay} shadow color='gradient'>
+    <Button onPress={handlePlay} shadow color='gradient'>
       Play
     </Button>
   )
