@@ -6,7 +6,6 @@ import Quiz from './components/Quiz'
 
 function App () {
   const questions = useQuestionsStore((state) => state.questions)
-
   return (
     <main className='main'>
       <Container className='container'>
@@ -16,8 +15,7 @@ function App () {
           </div>
           <div className='content'>
             {
-            questions ? <Quiz /> : <PlayButton />
-
+            questions.length === 0 ? <PlayButton /> : <Quiz />
           }
           </div>
         </section>
