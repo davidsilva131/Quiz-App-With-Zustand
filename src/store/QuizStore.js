@@ -1,16 +1,33 @@
 import { create } from 'zustand'
 import { getQuiz } from '../services/QuizServices'
 import { devtools, persist } from 'zustand/middleware'
+import confetti from 'canvas-confetti'
 
 export const useQuestionsStore = create(devtools(
   persist(
     (set, get) => ({
-      loading: true,
+      loading: false,
       questions: [],
       currentQuestion: 0,
       fetchQuestions: async () => {
         const questions = await getQuiz()
         set({ questions }, false, 'FETCH_QUESTIONS')
+      },
+      selectAnswer: (question, answer) => {
+        const { questions } = get()
+        const newQuestions = structuredClone(questions)
+        const questionIndex = newQuestions.findIndex(q => q.question === question)
+        const questionInfo = newQuestions[questionIndex]
+        const isCorrectUserAnswer = questionInfo.correctAnswer === answer
+        if (isCorrectUserAnswer) confetti()
+
+        newQuestions[questionIndex] = {
+          ...questionInfo,
+          isCorrectUserAnswer,
+          userSelectedAnswer: answer
+        }
+
+        set({ questions: newQuestions }, false, 'SELECT_ANSWER')
       },
       goNextQuestion: () => {
         const { currentQuestion, questions } = get()
