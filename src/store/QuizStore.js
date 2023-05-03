@@ -15,13 +15,13 @@ export const useQuestionsStore = create(devtools(
       },
       selectAnswer: (question, answer) => {
         const { questions } = get()
+        const { currentQuestion } = get()
         const newQuestions = structuredClone(questions)
-        const questionIndex = newQuestions.findIndex(q => q.question === question)
-        const questionInfo = newQuestions[questionIndex]
+        const questionInfo = newQuestions[currentQuestion]
         const isCorrectUserAnswer = questionInfo.correctAnswer === answer
         if (isCorrectUserAnswer) confetti()
 
-        newQuestions[questionIndex] = {
+        newQuestions[currentQuestion] = {
           ...questionInfo,
           isCorrectUserAnswer,
           userSelectedAnswer: answer

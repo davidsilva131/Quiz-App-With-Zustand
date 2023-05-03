@@ -7,6 +7,7 @@ export const getQuiz = async () => {
   const newResults = results.map(q => (
     {
       ...q,
+      answers: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
       correctAnswer: q.correct_answer
     }
   ))
