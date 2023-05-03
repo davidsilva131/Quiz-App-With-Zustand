@@ -1,16 +1,16 @@
 import { Button } from '@nextui-org/react'
 import { useQuestionsData } from '../hooks/useQuestionsData'
 import { useQuestionsStore } from '../store/QuizStore'
-
+import './Results.css'
 const Results = () => {
   const { correct, incorrect } = useQuestionsData()
   const reset = useQuestionsStore(state => state.reset)
   return (
     <div className='results'>
-      <h1>¡You results!</h1>
+      <h1>¡Your results!</h1>
       <strong>
-        <p>{correct} corrects</p>
-        <p>{incorrect} incorrects</p>
+        <p>✔ {correct} answers corrects</p>
+        <p>❌ {incorrect} answers incorrects</p>
       </strong>
       <div className='results'>
         <Button onPress={() => reset()} shadow color='gradient'>
