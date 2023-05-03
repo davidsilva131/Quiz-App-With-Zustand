@@ -9,8 +9,8 @@ const Results = () => {
     <div className='results'>
       <h1>¡Your results!</h1>
       <strong>
-        <p>✔ {correct} answers corrects</p>
-        <p>❌ {incorrect} answers incorrects</p>
+        <p>✔ {correct} corrects answers</p>
+        <p>❌ {incorrect} incorrects answers</p>
       </strong>
       <div className='results'>
         <Button onPress={() => reset()} shadow color='gradient'>
